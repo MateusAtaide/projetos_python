@@ -3,7 +3,7 @@ import PySimpleGUI as sg
 
 layout = [
     [sg.Text('Faça a sua Pergunta')],
-    [sg.Image(filename='bola_p1.png')],
+    [sg.Image(filename='bola_p.png')],
     [sg.Input(key='Pergunta', do_not_clear=False)],
     [sg.Button('Responda Para Mim')],
     [sg.Text('', key='Resposta')],
