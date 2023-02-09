@@ -1,11 +1,10 @@
 import PySimpleGUI as sg
-import getpass
 
 layout = [
     [sg.Text('Usuário')],
-    [sg.Input(key='usuario')],
+    [sg.Input(key='usuario', do_not_clear=False)],
     [sg.Text('Senha')],
-    [sg.Input(key='senha', password_char='*')],
+    [sg.Input(key='senha', password_char='*', do_not_clear=False)],
     [sg.Button('Cadastrar')],
     [sg.Button('Login')],
     [sg.Text('', key='mensagem')],
@@ -18,17 +17,20 @@ while True:
     if event == sg.WINDOW_CLOSED:
         break
     elif event == 'Cadastrar':
-        if (values['usuario'] != '') or (values['senha'] != ''):
-            usuario_criado = values['usuario']
-            senha_criada = values['senha']
-            window['mensagem'].update('Usuário criado!')
-        else:
-            window['mensagem'].update('Preenchimento Inválido!')
+        try:
+            if (len(values['usuario'].strip()) == 6) and (len(values['senha'].strip()) == 6):
+                usuario_criado = values['usuario'].lower()
+                senha_criada = values['senha']
+                window['mensagem'].update('Usuário ,"' + usuario_criado + '" criado com sucesso!')
+            else:
+                window['mensagem'].update('Preenchimento Inválido!')
+        except:
+            window['mensagem'].update('Preenchimento Inválido2!')
     elif event == 'Login':
         usuario = values['usuario']
         senha = values['senha']
         if senha == senha_criada and usuario == usuario_criado:
-            window['mensagem'].update('Login feito com sucesso!')
+            window['mensagem'].update('Login realizado com sucesso!')
         else:
             window['mensagem'].update('Usuario ou senha incorretos!')
 
