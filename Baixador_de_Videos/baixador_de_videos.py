@@ -1,4 +1,5 @@
 import pytube
+from pytube.exceptions import RegexMatchError
 import PySimpleGUI as sg
 
 layout = [
@@ -12,8 +13,12 @@ while True:
     event, values = window.read()
     if event == sg.WINDOW_CLOSED or event == 'Cancelar':
         break
-    elif event == 'Baixar' and values['link'] != '':
+    try:
+        event == 'Baixar' and values['link'] != ''
         link = values['link']
         yt = pytube.YouTube(link)
         yt.streams.get_highest_resolution().download()
         window['mensagem'].update('Download Concluído!')
+    except RegexMatchError:
+        window['mensagem'].update('Link inválido!')
+
