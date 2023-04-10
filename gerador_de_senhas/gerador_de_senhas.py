@@ -1,7 +1,6 @@
 import random
 import PySimpleGUI as sg
-import os
-from playsound import playsound
+
 
 
 class Passgen:
