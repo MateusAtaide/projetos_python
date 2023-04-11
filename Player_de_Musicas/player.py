@@ -97,7 +97,7 @@ while True:
             update_song_display()
 
         else:
-            window['player_info'].update("Chagou ao fim da lista!")
+            window['player_info'].update("Chegou ao fim da lista!")
             pass
 
     elif event == 'previous':
@@ -107,4 +107,4 @@ while True:
             play_sound(songs_in_directory[current_song_index])
             update_song_display()
         else:
-            window['player_info'].update("Chagou ao fim da lista!")
+            window['player_info'].update("Chegou ao fim da lista!")
