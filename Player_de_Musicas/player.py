@@ -51,8 +51,6 @@ main = [
     ],
     [sg.Column(layout=currently_playing, justification='c',
                element_justification='c', background_color='black', pad=None)]
-
-
 ]
 window = sg.Window('Player', layout=main, size=(
     480, 730), background_color='black', finalize=True, grab_anywhere=True, resizable=False)
@@ -63,13 +61,11 @@ songs_in_directory = get_files_inside_directory_not_recursive(directory)
 song_count = len(songs_in_directory)
 current_song_index = 0
 
-
 def update_song_display():
     window['song_name'].update(os.path.basename(
         songs_in_directory[current_song_index]))
     window['currently_playing'].update(
         f'Playing: {os.path.basename(songs_in_directory[current_song_index])}')
-
 
 while True:
     event, values = window.read()
@@ -82,7 +78,7 @@ while True:
             play_sound(songs_in_directory[current_song_index])
             update_song_display()
 
-    elif event == 'pause':
+    elif event == 'pause': #usa a função da biblioteca pygame para pausar a musica
         if is_sound_playing():
             pause_sounds()
         else:
