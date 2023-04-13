@@ -1,19 +1,17 @@
 import sys
-from cx_Freeze import setup, Executable
+from cx_Freeze import setup, Executable #importação das bibliotecas
 
-# Dependencies are automatically detected, but it might need fine tuning.
 build_exe_options = {"packages": ["os"], "includes": ["tkinter"]}
-
-# GUI applications require a different base on Windows (the default is for
-# a console application).
-base = None
+#importação das ibliotecas necessárias para a execução da aplicação
+base = None #configuração para aplicações de interface gráfica
 if sys.platform == "win32":
     base = "Win32GUI"
 
 setup(
+    #informações sobre a aplicação a ser gerado o executável
     name="Gerador de senhas",
     version="0.1",
-    description="Minha 1° Aplicação!",
+    description="Gera senhas",
     options={"build_exe": build_exe_options},
-    executables=[Executable("gerador_de_senhas.py", base=base)]
+    executables=[Executable("gerador_de_senhas.py", base=base)] #nome do arquivo da aplicação
 )
